@@ -1,0 +1,17 @@
+site_name: Poisson Time-Series Models
+site_description: Statistical modelling of count-valued time series
+repo_url: https://github.com/DiogoRibeiro7/Poisson-Processes---Time-Series
+repo_name: DiogoRibeiro7/Poisson-Processes---Time-Series
+
+nav:
+  - Home: index.md
+  - Methodology: methodology.md
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true

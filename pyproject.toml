@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "poisson-time-series"
+version = "0.1.0"
+description = "Statistical modelling of count-valued time series with time-varying intensity."
+authors = ["Diogo Ribeiro"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{ include = "poisson_time_series", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.15"
+numpy = ">=1.26,<3.0"
+
+[tool.poetry.group.dev.dependencies]
+mkdocs = ">=1.6,<2.0"
+mkdocs-material = ">=9.5,<10.0"
+mypy = ">=1.15,<2.0"
+pre-commit = ">=4.0,<5.0"
+pytest = ">=8.0,<10.0"
+pytest-cov = ">=6.0,<8.0"
+ruff = ">=0.11,<1.0"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["legacy/**"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/poisson_time_series", "tests"]
+exclude = ["legacy/"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["poisson_time_series"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 90
+
+[build-system]
+requires = ["poetry-core>=2.0"]
+build-backend = "poetry.core.masonry.api"
