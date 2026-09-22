@@ -1,107 +1,99 @@
-# Poisson process models
+# Poisson Time-Series Models
 
-These are models for Poisson processes.  Goal is to be able
-to forecast values in a Poisson process that has cyclic
-fluctuation in the underlying process.  This means that there 
-is an underlying variability to the Poisson process, but the 
-variability is cyclic.  Another way of describing that would 
-be there is seasonality to the underlying Poisson process.  An
-example would be the hourly rate of traffic. The process is 
-Poisson, but the underlying process is parameterized as a 
-function of time. In the middle of the night the process is 
-paramaterized differently than during rush hour. This is assumed
-to be cyclic since it would have the same pattern every day.
+A statistical Python project for modelling count-valued time series with time-varying intensity.
 
-Since we want to actually track the data, there are some 
-good models for stochastic systems that have to be discarded
-since they do not attempt to track the variability, but rather
-attempt to estimate the mean and variance.  Techniques that 
-fall into this camp include GARCH and Kalman filters.  This
-basically leaves us with ARIMA models and the use of a generic
-model such as LSTM from deep learning, both of which will attempt
-to forecast the next actual data point.
+The original repository compared ARIMA and LSTM forecasting against simulated Poisson counts. Those experiments are retained under `legacy/` for provenance, but they are not the maintained direction of the project.
 
-This experiment entails a cyclic underlying Poisson process that
-changes.  Reason for this is, in the case of the traffic 
-example, there is a difference between weekday and weekend 
-traffic.  The goal, of course, is that the model we use will be
-able to remain relevant when it is exposed to underlying 
-patterns in the process that it has never seen.  To judge
-the fitness of the model, we use the RMSE on a test set and
-qualitatively observe the residual.  The idea being that we 
-want the RMSE to be as small as possible and the residual
-to appear random, or at least lack evidence of the underlying
-process.
+The maintained code focuses on the data-generating process itself: conditional count distributions, explicit intensity models, seasonality, overdispersion, serial dependence, calibration, and probabilistic forecast evaluation.
 
-Since there is seasonality to the underlying model, the 
-assumption is that in all training it would be prudent to 
-train on at least one full season.  In practice this seems
-to work better with at least 2 seasons, and for the notebooks
-presented they were trained with 3 seasons.  The different types
-of model were trained differently.  The LSTM model was trained 
-with an abundance of pre-generated model data, whereas the 
-ARIMA model was trained on the actual test data as a rolling
-model with the most recent point being the data point immediately
-preceding the comparison point. To make the plots comparable, you
-will see that some of the prior data is truncated.
+## Statistical scope
 
-The LSTM model presents some challenges. First, with a random
-process, we do not have a priori knowledge of the scale.  If we
-make assumptions and shrink the data too much it tends to not
-train as well.  On the other hand, if the test data is larger 
-than the training set it is impossible for the model to 
-replicate the large values. Furthermore, the model does not 
-generalize very well across different underlying processes.  It
-qualitatively captures the essence of the trend, but the 
-RMSE is not good.  The residual tends to prominently show the
-underlying Poisson control.  It is also very expensive to 
-train the LSTM.  This forces the idea that the model would
-need to be trained in advance with knowledge of expected process
-variability.  This may not always be possible.  Since the model
-does not seem to generalize well, it does not seem an ideal
-candidate for this specific use.
+For a count process `Y_t`, the baseline model is
 
-The ARIMA model is implemented as a rolling model of the preceding
-few seasons.  While this is somewhat expensive, it is significantly
-faster than training the LSTM model (seconds versus hours).  There is
-an advantage to the ARIMA model in that it continuously tracks the 
-pattern since it is a rolling pattern model.  This seems to perform
-better than the training all in advance idea that is central to the
-LSTM model. In theory, so long as the ARIMA model remains compatible
-with the underlying data, it should retain similar power in fitting
-and forecasting the new data.  Some problems encountered include
-convergence issues with higher order ARIMA models and a lack of 
-ability to get good RMSE performance.  The residual always retains
-some of the underlying Poisson control process despite using 
-differentiated data to improve stationarity and seasonality 
-performance.  If you change to a simpler underlying model using a
-Gaussian process, both the RMSE and the quality of the 
-residual improve dramatically.  This makes me think that the largest
-problem with the ARIMA model on this data is general incompatibility
-with the type of data, fluctuating Poisson data.  
+```text
+Y_t | lambda_t ~ Poisson(lambda_t)
+```
 
-Between the LSTM and ARIMA model, the ARIMA model performs better,
-requires significantly less computation time to achieve a result,
-is much simpler to tune, and is less susceptible to data 
-variability.  There may be ways to improve the performance. The specific
-way that the data is generated here may not be the most realistic.  It
-is step discontinuous rather than smooth with regard to the underlying
-Poisson characteristic.  While the process itself appears to be 
-Poisson, perhaps in practice it is adequate to suppose that it is 
-actually Gaussian.  If this hypothesis is true, it is reasonable
-to anticipate better results.  Of course the only way to know is 
-to collect real data and repeat the experiment.
+with a time-varying conditional intensity `lambda_t > 0`.
 
-Even by normalizing the Poisson distribution by the mean doesn't
-affect the quality of the residual.  The seasonal undulations are
-removed, but the variability was nearly identical in terms of the
-qualitative appearance of a qq-plot.  To be fair, this is expected since
-the variance of the distribution was not normalized, only the mean.
+The project will extend this baseline to cover:
 
-Another mechanism for improvement might be adding time series 
-components to the ARIMA model.  Particularly for constant underlying
-changes in the Poisson process, these could be modeled by a 
-Fourier series.  Despite the underlying process being assumed to
-change, the Fourier terms might help normalize the data and remove
-some of the artifacts from the residual.
+- deterministic and cyclic intensity functions;
+- Poisson regression with time-varying covariates;
+- negative-binomial models for overdispersion;
+- autoregressive count models where serial dependence is present;
+- state-space intensity models;
+- proper scoring rules and predictive interval calibration;
+- rolling-origin evaluation for probabilistic forecasts.
 
+Generic sequence models are not the default modelling strategy.
+
+## Repository layout
+
+```text
+src/poisson_time_series/    maintained typed package
+tests/                      unit and statistical tests
+docs/                       methodology and engineering documentation
+legacy/                     historical ARIMA/LSTM notebooks and source
+data/                       maintained data policy and future fixtures
+.github/                    CI and repository templates
+```
+
+## Installation
+
+The project uses Poetry.
+
+```bash
+git clone https://github.com/DiogoRibeiro7/Poisson-Processes---Time-Series.git
+cd Poisson-Processes---Time-Series
+poetry install
+```
+
+## Development checks
+
+```bash
+poetry run ruff check src tests
+poetry run mypy src tests
+poetry run pytest --cov --cov-report=term-missing
+poetry run mkdocs build --strict
+```
+
+## First maintained API
+
+The first maintained component is a reproducible periodic Poisson simulator.
+
+```python
+import numpy as np
+
+from poisson_time_series import simulate_periodic_poisson
+
+rng = np.random.default_rng(42)
+simulation = simulate_periodic_poisson(
+    rates=[2.0, 4.0, 8.0, 4.0],
+    cycles=3,
+    rng=rng,
+)
+
+print(simulation.counts)
+print(simulation.intensity)
+```
+
+The simulator returns both the sampled counts and the exact intensity used for each observation. This makes statistical validation possible without reconstructing hidden state.
+
+## Legacy material
+
+The original ARIMA, SARIMAX, LSTM, and notebook experiments are stored under `legacy/`. They are preserved as historical material and should not be imported by maintained code.
+
+## Roadmap
+
+1. establish reproducible count-process simulation;
+2. implement Poisson log-linear intensity models;
+3. add cyclic/Fourier intensity components;
+4. add negative-binomial models for overdispersion;
+5. add residual and calibration diagnostics appropriate for counts;
+6. implement rolling-origin probabilistic evaluation;
+7. add state-space and autoregressive count models where justified.
+
+## License
+
+Apache License 2.0. See `LICENSE`.
