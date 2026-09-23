@@ -8,7 +8,7 @@ import numpy as np
 import pytest
 from numpy.typing import ArrayLike
 
-from poisson_time_series import PoissonSimulation, simulate_periodic_poisson
+from count_time_series import PoissonSimulation, simulate_periodic_poisson
 
 
 def test_simulation_is_reproducible_with_explicit_generator() -> None:

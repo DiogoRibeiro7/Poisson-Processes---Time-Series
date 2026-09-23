@@ -61,7 +61,7 @@ and for zero counts it is
 ```python
 import numpy as np
 
-from poisson_time_series import DesignMatrix, fit_poisson_loglinear
+from count_time_series import DesignMatrix, fit_poisson_loglinear
 
 time = np.arange(24, dtype=float)
 design = DesignMatrix(

@@ -1,6 +1,6 @@
-# Poisson Time-Series Models
+# Count Time Series
 
-This project studies count-valued time series through explicit probability models for the conditional intensity.
+This project studies count-valued time series through explicit probabilistic models for conditional means, intensities, dispersion, and serial structure.
 
 The maintained code is organised around the data-generating process rather than generic forecasting wrappers.
 
@@ -8,13 +8,13 @@ The maintained code is organised around the data-generating process rather than 
 
 - reproducible periodic Poisson simulation;
 - typed immutable simulation results;
-- explicit access to the latent conditional intensity used for simulation.
+- Poisson log-linear regression with exposure support;
+- explicit access to fitted conditional intensities, likelihood, deviance, and model-based uncertainty.
 
 ## Planned components
 
-- Poisson log-linear intensity models;
 - cyclic intensity bases;
 - negative-binomial models;
-- diagnostics for count residuals and calibration;
+- diagnostics for dispersion, count residuals, and calibration;
 - probabilistic rolling-origin evaluation;
 - state-space and autoregressive count models.
