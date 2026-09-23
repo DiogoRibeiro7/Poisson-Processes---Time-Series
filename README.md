@@ -57,7 +57,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible periodic Poisson simulation and Poisson log-linear regression.
+The package currently includes reproducible periodic Poisson simulation, Poisson log-linear regression, Poisson adequacy diagnostics, and fixed-dispersion NB2 regression.
 
 ```python
 import numpy as np
@@ -93,7 +93,7 @@ The original ARIMA, SARIMAX, LSTM, and notebook experiments are stored under `le
 1. reproducible count-process simulation;
 2. Poisson log-linear intensity models;
 3. cyclic and Fourier intensity components;
-4. negative-binomial models for overdispersion;
+4. negative-binomial models for overdispersion, including dispersion estimation;
 5. residual and calibration diagnostics appropriate for counts;
 6. rolling-origin probabilistic evaluation;
 7. state-space and autoregressive count models where justified.
