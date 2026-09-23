@@ -58,7 +58,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible Poisson simulation, baseline Poisson and NB2 regression, Poisson adequacy diagnostics, and Poisson INGARCH modelling for serially dependent counts.
+The package currently includes reproducible Poisson simulation, baseline Poisson and NB2 regression, Poisson adequacy diagnostics, Poisson INGARCH modelling, and temporal residual diagnostics for serially dependent counts.
 
 ```python
 import numpy as np

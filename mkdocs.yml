@@ -10,6 +10,7 @@ nav:
   - Poisson diagnostics: poisson_diagnostics.md
   - Negative-binomial regression: negative_binomial.md
   - Poisson INGARCH: poisson_ingarch.md
+  - INGARCH diagnostics: ingarch_diagnostics.md
 
 theme:
   name: material
