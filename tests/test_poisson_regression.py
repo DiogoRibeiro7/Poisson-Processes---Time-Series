@@ -8,7 +8,7 @@ import numpy as np
 import pytest
 from numpy.typing import ArrayLike
 
-from poisson_time_series import DesignMatrix, fit_poisson_loglinear
+from count_time_series import DesignMatrix, fit_poisson_loglinear
 
 
 def _intercept_design(nobs: int) -> DesignMatrix:

@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "poisson-time-series"
+name = "count-time-series"
 version = "0.1.0"
-description = "Statistical modelling of count-valued time series with time-varying intensity."
+description = "Statistical modelling of count-valued time series with explicit probabilistic structure."
 authors = ["Diogo Ribeiro"]
 license = "Apache-2.0"
 readme = "README.md"
-packages = [{ include = "poisson_time_series", from = "src" }]
+packages = [{ include = "count_time_series", from = "src" }]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.15"
@@ -31,7 +31,7 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
-files = ["src/poisson_time_series", "tests"]
+files = ["src/count_time_series", "tests"]
 exclude = ["legacy/"]
 
 [tool.pytest.ini_options]
@@ -40,7 +40,7 @@ testpaths = ["tests"]
 
 [tool.coverage.run]
 branch = true
-source = ["poisson_time_series"]
+source = ["count_time_series"]
 
 [tool.coverage.report]
 show_missing = true
