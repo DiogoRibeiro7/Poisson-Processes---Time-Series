@@ -144,9 +144,17 @@ class PoissonLaplaceFilterResult:
 
         object.__setattr__(self, "observed_counts", _freeze_int(self.observed_counts))
         object.__setattr__(self, "predicted_state_mean", _freeze_float(self.predicted_state_mean))
-        object.__setattr__(self, "predicted_state_variance", _freeze_float(self.predicted_state_variance))
+        object.__setattr__(
+            self,
+            "predicted_state_variance",
+            _freeze_float(self.predicted_state_variance),
+        )
         object.__setattr__(self, "filtered_state_mode", _freeze_float(self.filtered_state_mode))
-        object.__setattr__(self, "filtered_state_variance", _freeze_float(self.filtered_state_variance))
+        object.__setattr__(
+            self,
+            "filtered_state_variance",
+            _freeze_float(self.filtered_state_variance),
+        )
         object.__setattr__(self, "filtered_intensity", _freeze_float(self.filtered_intensity))
         object.__setattr__(self, "newton_iterations", _freeze_int(self.newton_iterations))
 
@@ -254,7 +262,11 @@ def _laplace_update(
         new_mode = mode - step
 
         if abs(new_mode - mode) <= tolerance * (1.0 + abs(new_mode)):
-            variance = 1.0 / (float(np.exp(np.clip(new_mode, -700.0, 700.0))) + 1.0 / prior_variance)
+            curvature = (
+                float(np.exp(np.clip(new_mode, -700.0, 700.0)))
+                + 1.0 / prior_variance
+            )
+            variance = 1.0 / curvature
             return new_mode, variance, iteration, True
         mode = new_mode
 
