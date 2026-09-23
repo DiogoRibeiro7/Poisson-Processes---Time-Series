@@ -30,7 +30,7 @@ def _freeze_int(values: ArrayLike) -> IntArray:
     return array
 
 
-def _validate_positive_real(value: Real, *, name: str) -> float:
+def _validate_positive_real(value: float, *, name: str) -> float:
     """Validate a strictly positive finite real value."""
     if isinstance(value, bool) or not isinstance(value, Real):
         raise TypeError(f"{name} must be a finite positive real number.")
@@ -41,7 +41,7 @@ def _validate_positive_real(value: Real, *, name: str) -> float:
     return validated
 
 
-def _validate_coefficient(value: Real, *, name: str) -> float:
+def _validate_coefficient(value: float, *, name: str) -> float:
     """Validate a non-negative finite INGARCH coefficient."""
     if isinstance(value, bool) or not isinstance(value, Real):
         raise TypeError(f"{name} must be a finite non-negative real number.")
@@ -52,7 +52,7 @@ def _validate_coefficient(value: Real, *, name: str) -> float:
     return validated
 
 
-def _validate_dynamics(omega: Real, alpha: Real, beta: Real) -> tuple[float, float, float]:
+def _validate_dynamics(omega: float, alpha: float, beta: float) -> tuple[float, float, float]:
     """Validate stable INGARCH(1,1) parameters."""
     omega_value = _validate_positive_real(omega, name="omega")
     alpha_value = _validate_coefficient(alpha, name="alpha")
@@ -241,11 +241,11 @@ class PoissonINGARCHResult:
 def simulate_poisson_ingarch(
     nobs: int,
     *,
-    omega: Real,
-    alpha: Real,
-    beta: Real,
+    omega: float,
+    alpha: float,
+    beta: float,
     burn_in: int = 200,
-    initial_intensity: Real | None = None,
+    initial_intensity: float | None = None,
     rng: np.random.Generator | None = None,
 ) -> PoissonINGARCHSimulation:
     """Simulate a stationary Poisson INGARCH(1,1) process."""
@@ -292,9 +292,9 @@ def simulate_poisson_ingarch(
 def fit_poisson_ingarch(
     counts: ArrayLike,
     *,
-    initial_intensity: Real | None = None,
+    initial_intensity: float | None = None,
     max_iterations: int = 1000,
-    tolerance: Real = 1e-8,
+    tolerance: float = 1e-8,
 ) -> PoissonINGARCHResult:
     """Fit Poisson INGARCH(1,1) by conditional maximum likelihood."""
     y = _as_counts(counts)
