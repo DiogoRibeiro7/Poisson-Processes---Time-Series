@@ -7,10 +7,15 @@ from typing import cast
 import numpy as np
 import pytest
 
-from count_time_series import DesignMatrix, fit_poisson_loglinear, poisson_diagnostics
+from count_time_series import (
+    DesignMatrix,
+    PoissonRegressionResult,
+    fit_poisson_loglinear,
+    poisson_diagnostics,
+)
 
 
-def _fit_intercept_only(counts: list[int]) -> object:
+def _fit_intercept_only(counts: list[int]) -> PoissonRegressionResult:
     design = DesignMatrix(
         values=np.ones((len(counts), 1)),
         columns=("intercept",),
@@ -20,7 +25,7 @@ def _fit_intercept_only(counts: list[int]) -> object:
 
 def test_diagnostics_match_direct_pearson_calculation() -> None:
     result = _fit_intercept_only([1, 2, 3, 4, 5, 6])
-    diagnostics = poisson_diagnostics(cast("PoissonRegressionResult", result))
+    diagnostics = poisson_diagnostics(result)
 
     expected_residuals = (
         result.observed_counts.astype(float) - result.fitted_intensity
@@ -37,7 +42,7 @@ def test_diagnostics_match_direct_pearson_calculation() -> None:
 
 def test_deviance_residuals_reconstruct_model_deviance() -> None:
     result = _fit_intercept_only([0, 1, 2, 4, 8])
-    diagnostics = poisson_diagnostics(cast("PoissonRegressionResult", result))
+    diagnostics = poisson_diagnostics(result)
 
     reconstructed = float(diagnostics.deviance_residuals @ diagnostics.deviance_residuals)
     assert reconstructed == pytest.approx(result.deviance)
@@ -49,7 +54,7 @@ def test_deviance_residuals_reconstruct_model_deviance() -> None:
 def test_variance_to_mean_ratio_is_raw_count_summary() -> None:
     counts = [1, 1, 1, 9, 9, 9]
     result = _fit_intercept_only(counts)
-    diagnostics = poisson_diagnostics(cast("PoissonRegressionResult", result))
+    diagnostics = poisson_diagnostics(result)
 
     expected = np.var(counts, ddof=1) / np.mean(counts)
     assert diagnostics.variance_to_mean_ratio == pytest.approx(expected)
@@ -57,7 +62,7 @@ def test_variance_to_mean_ratio_is_raw_count_summary() -> None:
 
 def test_diagnostic_arrays_are_immutable() -> None:
     result = _fit_intercept_only([1, 2, 3, 4])
-    diagnostics = poisson_diagnostics(cast("PoissonRegressionResult", result))
+    diagnostics = poisson_diagnostics(result)
 
     assert not diagnostics.pearson_residuals.flags.writeable
     assert not diagnostics.deviance_residuals.flags.writeable
@@ -73,5 +78,3 @@ def test_diagnostics_reject_non_result() -> None:
     with pytest.raises(TypeError, match="PoissonRegressionResult"):
         poisson_diagnostics(cast("PoissonRegressionResult", object()))
 
-
-from count_time_series import PoissonRegressionResult
