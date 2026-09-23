@@ -77,9 +77,12 @@ def test_ingarch_fit_recovers_simulated_parameters() -> None:
     result = fit_poisson_ingarch(simulation.counts)
 
     assert result.converged
-    assert result.omega == pytest.approx(1.2, abs=0.25)
+    true_stationary_mean = 1.2 / (1.0 - 0.25 - 0.50)
+    true_persistence = 0.25 + 0.50
+
+    assert result.unconditional_mean == pytest.approx(true_stationary_mean, abs=0.25)
     assert result.alpha == pytest.approx(0.25, abs=0.08)
-    assert result.beta == pytest.approx(0.50, abs=0.10)
+    assert result.alpha + result.beta == pytest.approx(true_persistence, abs=0.10)
     assert result.alpha + result.beta < 1.0
     assert np.isfinite(result.log_likelihood)
     assert np.isfinite(result.aic)
