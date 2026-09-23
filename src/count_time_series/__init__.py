@@ -12,6 +12,12 @@ from .negative_binomial import (
     NegativeBinomialRegressionResult,
     fit_negative_binomial_loglinear,
 )
+from .negative_binomial_ingarch import (
+    NegativeBinomialINGARCHResult,
+    NegativeBinomialINGARCHSimulation,
+    fit_negative_binomial_ingarch,
+    simulate_negative_binomial_ingarch,
+)
 from .poisson_regression import (
     DesignMatrix,
     PoissonRegressionResult,
@@ -22,17 +28,21 @@ from .simulation import PoissonSimulation, simulate_periodic_poisson
 __all__ = [
     "DesignMatrix",
     "INGARCHDiagnostics",
+    "NegativeBinomialINGARCHResult",
+    "NegativeBinomialINGARCHSimulation",
     "NegativeBinomialRegressionResult",
     "PoissonDiagnostics",
     "PoissonINGARCHResult",
     "PoissonINGARCHSimulation",
     "PoissonRegressionResult",
     "PoissonSimulation",
+    "fit_negative_binomial_ingarch",
     "fit_negative_binomial_loglinear",
     "fit_poisson_ingarch",
     "fit_poisson_loglinear",
     "ingarch_diagnostics",
     "poisson_diagnostics",
+    "simulate_negative_binomial_ingarch",
     "simulate_periodic_poisson",
     "simulate_poisson_ingarch",
 ]
