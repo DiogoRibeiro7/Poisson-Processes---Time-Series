@@ -74,9 +74,7 @@ def poisson_diagnostics(result: PoissonRegressionResult) -> PoissonDiagnostics:
     )
 
     sample_mean = float(np.mean(counts))
-    if sample_mean == 0.0:
-        variance_to_mean = 0.0
-    elif counts.size < 2:
+    if sample_mean == 0.0 or counts.size < 2:
         variance_to_mean = 0.0
     else:
         variance_to_mean = float(np.var(counts, ddof=1) / sample_mean)
