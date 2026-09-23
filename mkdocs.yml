@@ -8,6 +8,7 @@ nav:
   - Methodology: methodology.md
   - Poisson regression: poisson_regression.md
   - Poisson diagnostics: poisson_diagnostics.md
+  - Negative-binomial regression: negative_binomial.md
 
 theme:
   name: material
