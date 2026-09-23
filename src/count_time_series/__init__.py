@@ -32,6 +32,11 @@ from .poisson_log_gaussian import (
     filter_poisson_log_gaussian,
     simulate_poisson_log_gaussian,
 )
+from .poisson_log_gaussian_estimation import (
+    PoissonLogGaussianParameterFit,
+    fit_poisson_log_gaussian_parameters,
+    laplace_log_marginal_likelihood,
+)
 from .poisson_regression import (
     DesignMatrix,
     PoissonRegressionResult,
@@ -55,6 +60,7 @@ __all__ = [
     "PoissonINGARCHResult",
     "PoissonINGARCHSimulation",
     "PoissonLaplaceFilterResult",
+    "PoissonLogGaussianParameterFit",
     "PoissonLogGaussianSimulation",
     "PoissonRegressionResult",
     "PoissonSimulation",
@@ -63,8 +69,10 @@ __all__ = [
     "fit_negative_binomial_ingarch",
     "fit_negative_binomial_loglinear",
     "fit_poisson_ingarch",
+    "fit_poisson_log_gaussian_parameters",
     "fit_poisson_loglinear",
     "ingarch_diagnostics",
+    "laplace_log_marginal_likelihood",
     "negative_binomial_log_score",
     "pit_calibration",
     "poisson_diagnostics",
