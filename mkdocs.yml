@@ -12,6 +12,7 @@ nav:
   - Poisson INGARCH: poisson_ingarch.md
   - INGARCH diagnostics: ingarch_diagnostics.md
   - Negative-binomial INGARCH: negative_binomial_ingarch.md
+  - Probabilistic evaluation: probabilistic_evaluation.md
 
 theme:
   name: material

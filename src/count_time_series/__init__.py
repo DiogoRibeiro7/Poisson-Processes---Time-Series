@@ -1,6 +1,14 @@
 """Statistical models and tools for count-valued time series."""
 
 from .diagnostics import PoissonDiagnostics, poisson_diagnostics
+from .evaluation import (
+    PITCalibration,
+    negative_binomial_log_score,
+    pit_calibration,
+    poisson_log_score,
+    randomized_pit_negative_binomial,
+    randomized_pit_poisson,
+)
 from .ingarch import (
     PoissonINGARCHResult,
     PoissonINGARCHSimulation,
@@ -31,6 +39,7 @@ __all__ = [
     "NegativeBinomialINGARCHResult",
     "NegativeBinomialINGARCHSimulation",
     "NegativeBinomialRegressionResult",
+    "PITCalibration",
     "PoissonDiagnostics",
     "PoissonINGARCHResult",
     "PoissonINGARCHSimulation",
@@ -41,7 +50,12 @@ __all__ = [
     "fit_poisson_ingarch",
     "fit_poisson_loglinear",
     "ingarch_diagnostics",
+    "negative_binomial_log_score",
+    "pit_calibration",
     "poisson_diagnostics",
+    "poisson_log_score",
+    "randomized_pit_negative_binomial",
+    "randomized_pit_poisson",
     "simulate_negative_binomial_ingarch",
     "simulate_periodic_poisson",
     "simulate_poisson_ingarch",
