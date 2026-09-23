@@ -26,6 +26,12 @@ from .negative_binomial_ingarch import (
     fit_negative_binomial_ingarch,
     simulate_negative_binomial_ingarch,
 )
+from .poisson_log_gaussian import (
+    PoissonLaplaceFilterResult,
+    PoissonLogGaussianSimulation,
+    filter_poisson_log_gaussian,
+    simulate_poisson_log_gaussian,
+)
 from .poisson_regression import (
     DesignMatrix,
     PoissonRegressionResult,
@@ -48,9 +54,12 @@ __all__ = [
     "PoissonDiagnostics",
     "PoissonINGARCHResult",
     "PoissonINGARCHSimulation",
+    "PoissonLaplaceFilterResult",
+    "PoissonLogGaussianSimulation",
     "PoissonRegressionResult",
     "PoissonSimulation",
     "RollingOriginResult",
+    "filter_poisson_log_gaussian",
     "fit_negative_binomial_ingarch",
     "fit_negative_binomial_loglinear",
     "fit_poisson_ingarch",
@@ -67,6 +76,7 @@ __all__ = [
     "simulate_negative_binomial_ingarch",
     "simulate_periodic_poisson",
     "simulate_poisson_ingarch",
+    "simulate_poisson_log_gaussian",
 ]
 
 __version__ = "0.1.0"

@@ -14,6 +14,7 @@ nav:
   - Negative-binomial INGARCH: negative_binomial_ingarch.md
   - Probabilistic evaluation: probabilistic_evaluation.md
   - Rolling-origin evaluation: rolling_origin.md
+  - Poisson log-Gaussian state space: poisson_log_gaussian.md
 
 theme:
   name: material
