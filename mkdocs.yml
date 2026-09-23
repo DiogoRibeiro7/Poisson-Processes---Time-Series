@@ -6,6 +6,7 @@ repo_name: DiogoRibeiro7/Poisson-Processes---Time-Series
 nav:
   - Home: index.md
   - Methodology: methodology.md
+  - Poisson regression: poisson_regression.md
 
 theme:
   name: material
