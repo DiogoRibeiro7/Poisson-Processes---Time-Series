@@ -37,6 +37,10 @@ from .poisson_log_gaussian_estimation import (
     fit_poisson_log_gaussian_parameters,
     laplace_log_marginal_likelihood,
 )
+from .poisson_log_gaussian_smoothing import (
+    PoissonLaplaceSmootherResult,
+    smooth_poisson_log_gaussian,
+)
 from .poisson_regression import (
     DesignMatrix,
     PoissonRegressionResult,
@@ -60,6 +64,7 @@ __all__ = [
     "PoissonINGARCHResult",
     "PoissonINGARCHSimulation",
     "PoissonLaplaceFilterResult",
+    "PoissonLaplaceSmootherResult",
     "PoissonLogGaussianParameterFit",
     "PoissonLogGaussianSimulation",
     "PoissonRegressionResult",
@@ -85,6 +90,7 @@ __all__ = [
     "simulate_periodic_poisson",
     "simulate_poisson_ingarch",
     "simulate_poisson_log_gaussian",
+    "smooth_poisson_log_gaussian",
 ]
 
 __version__ = "0.1.0"
