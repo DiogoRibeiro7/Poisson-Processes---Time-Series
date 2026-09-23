@@ -31,6 +31,11 @@ from .poisson_regression import (
     PoissonRegressionResult,
     fit_poisson_loglinear,
 )
+from .rolling_origin import (
+    RollingOriginResult,
+    rolling_origin_negative_binomial_ingarch,
+    rolling_origin_poisson_ingarch,
+)
 from .simulation import PoissonSimulation, simulate_periodic_poisson
 
 __all__ = [
@@ -45,6 +50,7 @@ __all__ = [
     "PoissonINGARCHSimulation",
     "PoissonRegressionResult",
     "PoissonSimulation",
+    "RollingOriginResult",
     "fit_negative_binomial_ingarch",
     "fit_negative_binomial_loglinear",
     "fit_poisson_ingarch",
@@ -56,6 +62,8 @@ __all__ = [
     "poisson_log_score",
     "randomized_pit_negative_binomial",
     "randomized_pit_poisson",
+    "rolling_origin_negative_binomial_ingarch",
+    "rolling_origin_poisson_ingarch",
     "simulate_negative_binomial_ingarch",
     "simulate_periodic_poisson",
     "simulate_poisson_ingarch",
