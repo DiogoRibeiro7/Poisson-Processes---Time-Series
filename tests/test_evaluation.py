@@ -6,6 +6,7 @@ from typing import cast
 
 import numpy as np
 import pytest
+from numpy.typing import ArrayLike
 from scipy.stats import nbinom, poisson  # type: ignore[import-untyped]
 
 from count_time_series import (
@@ -123,9 +124,9 @@ def test_pit_calibration_matches_histogram_and_uniform_reference() -> None:
     "mean",
     [[1.0], [1.0, 0.0], [1.0, -1.0], [1.0, np.nan], [[1.0, 2.0]]],
 )
-def test_poisson_log_score_rejects_invalid_mean(mean: object) -> None:
+def test_poisson_log_score_rejects_invalid_mean(mean: ArrayLike) -> None:
     with pytest.raises(ValueError):
-        poisson_log_score([1, 2], cast(object, mean))
+        poisson_log_score([1, 2], mean)
 
 
 def test_poisson_log_score_rejects_non_numeric_mean() -> None:
@@ -162,9 +163,9 @@ def test_randomized_pit_rejects_invalid_rng() -> None:
         [[0.1, 0.2], [0.3, 0.4]],
     ],
 )
-def test_pit_calibration_rejects_invalid_values(values: object) -> None:
+def test_pit_calibration_rejects_invalid_values(values: ArrayLike) -> None:
     with pytest.raises(ValueError):
-        pit_calibration(cast(object, values))
+        pit_calibration(values)
 
 
 def test_pit_calibration_rejects_non_numeric_values() -> None:
