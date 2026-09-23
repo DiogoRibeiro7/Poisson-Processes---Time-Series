@@ -4,7 +4,7 @@ A statistical Python project for modelling count-valued time series with explici
 
 The original repository focused on simulated Poisson counts and compared ARIMA and LSTM forecasting. Those experiments are retained under `legacy/` for provenance, but they are not the maintained direction of the project.
 
-The maintained code focuses on conditional count distributions, explicit intensity or mean models, seasonality, overdispersion, serial dependence, calibration, and probabilistic forecast evaluation.
+The maintained code focuses specifically on temporal count processes: serially dependent conditional intensities, seasonality, state-space dynamics, regime changes, calibration, and probabilistic forecast evaluation. Poisson and negative-binomial GLMs are retained as baseline building blocks rather than the endpoint of the project.
 
 ## Statistical scope
 
@@ -18,7 +18,8 @@ but the project is intentionally broader than the Poisson family. Planned and ma
 
 - deterministic and cyclic intensity functions;
 - Poisson regression with time-varying covariates;
-- negative-binomial models for overdispersion;
+- negative-binomial observation models for overdispersion;
+- INGARCH and related observation-driven count models;
 - autoregressive count models where serial dependence is present;
 - state-space intensity models;
 - proper scoring rules and predictive interval calibration;
@@ -57,7 +58,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible periodic Poisson simulation, Poisson log-linear regression, Poisson adequacy diagnostics, and fixed-dispersion NB2 regression.
+The package currently includes reproducible Poisson simulation, baseline Poisson and NB2 regression, Poisson adequacy diagnostics, and Poisson INGARCH modelling for serially dependent counts.
 
 ```python
 import numpy as np
@@ -84,6 +85,10 @@ print(result.coefficients)
 print(result.deviance)
 ```
 
+## Project boundary
+
+This repository is for **time-dependent count processes**. General healthcare and actuarial count-regression demonstrations live in [healthcare-count-models-lab](https://github.com/DiogoRibeiro7/healthcare-count-models-lab), while Bayesian Gaussian-process intensity estimation for Poisson point processes lives in [mbgp-poisson](https://github.com/DiogoRibeiro7/mbgp-poisson).
+
 ## Legacy material
 
 The original ARIMA, SARIMAX, LSTM, and notebook experiments are stored under `legacy/`. They are historical material and are not imported by maintained code.
@@ -93,10 +98,11 @@ The original ARIMA, SARIMAX, LSTM, and notebook experiments are stored under `le
 1. reproducible count-process simulation;
 2. Poisson log-linear intensity models;
 3. cyclic and Fourier intensity components;
-4. negative-binomial models for overdispersion, including dispersion estimation;
-5. residual and calibration diagnostics appropriate for counts;
-6. rolling-origin probabilistic evaluation;
-7. state-space and autoregressive count models where justified.
+4. INGARCH and related observation-driven temporal count models;
+5. count-specific temporal residual and calibration diagnostics;
+6. rolling-origin probabilistic evaluation and proper scoring rules;
+7. Poisson/NB state-space and latent-intensity models;
+8. structural breaks and regime changes in count intensity.
 
 ## License
 
