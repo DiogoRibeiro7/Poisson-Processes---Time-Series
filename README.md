@@ -58,7 +58,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson INGARCH, fixed-dispersion NB-INGARCH, temporal residual diagnostics, and model-agnostic probabilistic forecast scoring and calibration.
+The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson INGARCH, fixed-dispersion NB-INGARCH, temporal residual diagnostics, probabilistic scoring and calibration, and rolling-origin one-step forecast evaluation.
 
 ```python
 import numpy as np
@@ -100,7 +100,7 @@ The original ARIMA, SARIMAX, LSTM, and notebook experiments are stored under `le
 3. cyclic and Fourier intensity components;
 4. Poisson and negative-binomial INGARCH models, followed by higher-order and related observation-driven count models;
 5. count-specific temporal residual and calibration diagnostics;
-6. rolling-origin probabilistic evaluation built on proper log scores and randomized-PIT calibration;
+6. rolling-origin probabilistic evaluation with expanding or fixed-width refitting, proper log scores, and randomized-PIT calibration;
 7. Poisson/NB state-space and latent-intensity models;
 8. structural breaks and regime changes in count intensity.
 
