@@ -1,5 +1,6 @@
 """Statistical models and tools for count-valued time series."""
 
+from .diagnostics import PoissonDiagnostics, poisson_diagnostics
 from .poisson_regression import (
     DesignMatrix,
     PoissonRegressionResult,
@@ -9,9 +10,11 @@ from .simulation import PoissonSimulation, simulate_periodic_poisson
 
 __all__ = [
     "DesignMatrix",
+    "PoissonDiagnostics",
     "PoissonRegressionResult",
     "PoissonSimulation",
     "fit_poisson_loglinear",
+    "poisson_diagnostics",
     "simulate_periodic_poisson",
 ]
 

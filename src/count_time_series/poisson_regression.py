@@ -97,6 +97,7 @@ class PoissonRegressionResult:
     coefficients: FloatArray
     covariance: FloatArray
     standard_errors: FloatArray
+    observed_counts: IntArray
     fitted_intensity: FloatArray
     linear_predictor: FloatArray
     columns: tuple[str, ...]
@@ -107,6 +108,9 @@ class PoissonRegressionResult:
 
     def __post_init__(self) -> None:
         """Freeze fitted arrays."""
+        counts = np.array(self.observed_counts, dtype=np.int64, copy=True)
+        counts.setflags(write=False)
+        object.__setattr__(self, "observed_counts", counts)
         object.__setattr__(self, "coefficients", _freeze_float(self.coefficients))
         object.__setattr__(self, "covariance", _freeze_float(self.covariance))
         object.__setattr__(self, "standard_errors", _freeze_float(self.standard_errors))
@@ -229,6 +233,7 @@ def fit_poisson_loglinear(
         coefficients=beta,
         covariance=covariance,
         standard_errors=standard_errors,
+        observed_counts=y,
         fitted_intensity=mean,
         linear_predictor=np.asarray(eta, dtype=np.float64),
         columns=design.columns,
