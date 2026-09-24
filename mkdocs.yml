@@ -19,6 +19,7 @@ nav:
   - Log-Gaussian smoothing: poisson_log_gaussian_smoothing.md
   - Log-Gaussian parameter uncertainty: poisson_log_gaussian_uncertainty.md
   - Poisson change point: poisson_change_point.md
+  - Multiple Poisson change points: poisson_multiple_change_points.md
 
 theme:
   name: material

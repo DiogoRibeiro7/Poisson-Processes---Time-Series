@@ -58,7 +58,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson and NB-INGARCH models, temporal diagnostics, probabilistic rolling-origin evaluation, Poisson log-Gaussian latent-state modelling, and profile-likelihood detection of a single Poisson intensity change point.
+The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson and NB-INGARCH models, temporal diagnostics, probabilistic rolling-origin evaluation, Poisson log-Gaussian latent-state modelling, and exact single- and multiple-change-point segmentation for Poisson intensities.
 
 ```python
 import numpy as np
