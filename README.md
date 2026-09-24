@@ -58,7 +58,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson and NB-INGARCH models, temporal diagnostics, probabilistic rolling-origin evaluation, and Poisson log-Gaussian latent-state modelling with Laplace filtering and approximate parameter estimation.
+The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson and NB-INGARCH models, temporal diagnostics, probabilistic rolling-origin evaluation, and Poisson log-Gaussian latent-state modelling with Laplace filtering, approximate parameter estimation, and backward smoothing.
 
 ```python
 import numpy as np

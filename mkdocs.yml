@@ -16,6 +16,7 @@ nav:
   - Rolling-origin evaluation: rolling_origin.md
   - Poisson log-Gaussian state space: poisson_log_gaussian.md
   - Log-Gaussian parameter estimation: poisson_log_gaussian_estimation.md
+  - Log-Gaussian smoothing: poisson_log_gaussian_smoothing.md
 
 theme:
   name: material
