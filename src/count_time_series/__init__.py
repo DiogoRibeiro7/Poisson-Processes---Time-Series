@@ -41,6 +41,10 @@ from .poisson_log_gaussian_smoothing import (
     PoissonLaplaceSmootherResult,
     smooth_poisson_log_gaussian,
 )
+from .poisson_log_gaussian_uncertainty import (
+    PoissonLogGaussianParameterUncertainty,
+    estimate_poisson_log_gaussian_uncertainty,
+)
 from .poisson_regression import (
     DesignMatrix,
     PoissonRegressionResult,
@@ -66,10 +70,12 @@ __all__ = [
     "PoissonLaplaceFilterResult",
     "PoissonLaplaceSmootherResult",
     "PoissonLogGaussianParameterFit",
+    "PoissonLogGaussianParameterUncertainty",
     "PoissonLogGaussianSimulation",
     "PoissonRegressionResult",
     "PoissonSimulation",
     "RollingOriginResult",
+    "estimate_poisson_log_gaussian_uncertainty",
     "filter_poisson_log_gaussian",
     "fit_negative_binomial_ingarch",
     "fit_negative_binomial_loglinear",
