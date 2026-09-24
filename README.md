@@ -58,7 +58,7 @@ poetry run mkdocs build --strict
 
 ## Maintained API
 
-The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson and NB-INGARCH models, temporal diagnostics, probabilistic rolling-origin evaluation, and Poisson log-Gaussian latent-state modelling with Laplace filtering, approximate parameter estimation, local parameter uncertainty, and backward smoothing.
+The package currently includes reproducible count simulation, baseline Poisson and NB2 regression, Poisson and NB-INGARCH models, temporal diagnostics, probabilistic rolling-origin evaluation, Poisson log-Gaussian latent-state modelling, and profile-likelihood detection of a single Poisson intensity change point.
 
 ```python
 import numpy as np
@@ -102,7 +102,7 @@ The original ARIMA, SARIMAX, LSTM, and notebook experiments are stored under `le
 5. count-specific temporal residual and calibration diagnostics;
 6. rolling-origin probabilistic evaluation with expanding or fixed-width refitting, proper log scores, and randomized-PIT calibration;
 7. Poisson/NB state-space and latent-intensity models, including log-Gaussian filtering and approximate marginal-likelihood parameter estimation;
-8. structural breaks and regime changes in count intensity.
+8. structural breaks and regime changes in count intensity, beginning with exact profile-likelihood estimation of a single Poisson change point.
 
 ## License
 

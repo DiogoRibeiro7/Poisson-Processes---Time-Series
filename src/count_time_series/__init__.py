@@ -1,5 +1,9 @@
 """Statistical models and tools for count-valued time series."""
 
+from .change_points import (
+    PoissonChangePointResult,
+    fit_poisson_single_change_point,
+)
 from .diagnostics import PoissonDiagnostics, poisson_diagnostics
 from .evaluation import (
     PITCalibration,
@@ -64,6 +68,7 @@ __all__ = [
     "NegativeBinomialINGARCHSimulation",
     "NegativeBinomialRegressionResult",
     "PITCalibration",
+    "PoissonChangePointResult",
     "PoissonDiagnostics",
     "PoissonINGARCHResult",
     "PoissonINGARCHSimulation",
@@ -82,6 +87,7 @@ __all__ = [
     "fit_poisson_ingarch",
     "fit_poisson_log_gaussian_parameters",
     "fit_poisson_loglinear",
+    "fit_poisson_single_change_point",
     "ingarch_diagnostics",
     "laplace_log_marginal_likelihood",
     "negative_binomial_log_score",
