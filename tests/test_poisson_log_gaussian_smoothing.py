@@ -8,6 +8,7 @@ import numpy as np
 import pytest
 
 from count_time_series import (
+    PoissonLaplaceFilterResult,
     filter_poisson_log_gaussian,
     simulate_poisson_log_gaussian,
     smooth_poisson_log_gaussian,
@@ -120,8 +121,6 @@ def test_smoothed_intensity_uses_log_normal_moment() -> None:
 def test_smoother_rejects_non_filter_result() -> None:
     with pytest.raises(TypeError, match="PoissonLaplaceFilterResult"):
         smooth_poisson_log_gaussian(
-            cast("PoissonLaplaceFilterResult", object())
+            cast(PoissonLaplaceFilterResult, object())
         )
 
-
-from count_time_series import PoissonLaplaceFilterResult
