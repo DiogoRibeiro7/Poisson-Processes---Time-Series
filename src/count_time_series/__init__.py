@@ -20,6 +20,10 @@ from .ingarch import (
     simulate_poisson_ingarch,
 )
 from .ingarch_diagnostics import INGARCHDiagnostics, ingarch_diagnostics
+from .multiple_change_points import (
+    PoissonMultipleChangePointResult,
+    fit_poisson_multiple_change_points,
+)
 from .negative_binomial import (
     NegativeBinomialRegressionResult,
     fit_negative_binomial_loglinear,
@@ -77,6 +81,7 @@ __all__ = [
     "PoissonLogGaussianParameterFit",
     "PoissonLogGaussianParameterUncertainty",
     "PoissonLogGaussianSimulation",
+    "PoissonMultipleChangePointResult",
     "PoissonRegressionResult",
     "PoissonSimulation",
     "RollingOriginResult",
@@ -87,6 +92,7 @@ __all__ = [
     "fit_poisson_ingarch",
     "fit_poisson_log_gaussian_parameters",
     "fit_poisson_loglinear",
+    "fit_poisson_multiple_change_points",
     "fit_poisson_single_change_point",
     "ingarch_diagnostics",
     "laplace_log_marginal_likelihood",
